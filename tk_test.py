@@ -3,11 +3,12 @@ from tkinter import ttk
 
 
 class Rectangle:
-    def __init__(self, parent, xPos, yPos, length, height):
-        self.parent, self.xPos, self.yPos, self.length, self.height = parent, xPos, yPos, length, height
+    def __init__(self, parent, xPos, yPos, xPos2, yPos2):
+        self.parent,self.xPos,self.yPos,self.xPos2,self.ypos2=parent,xPos+960,-yPos+540,xPos2+960,-yPos2+540
         # Will be used for platforming soon
+
     def create(self):
-        self.parent.create_rectangle(self.xPos, self.yPos, self.xPos + self.length, self.yPos + self.height,
+        self.parent.create_rectangle(self.xPos, self.yPos, self.xPos2, self.ypos2,
                                      fill='#FFF000', outline='blue', tags=('rectangle', 'platform'))
 
 
@@ -20,10 +21,13 @@ root = Tk()
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-canvas = cnv(root)
+canvas = cnv(root, width=1920, height=1080)
 canvas.grid(column=0, row=0, sticky=(N, W, E, S))
 
-rect = Rectangle(canvas, 10, 10, 80, 50)
+canvas.create_line(-20 + 960, 540, 20 + 960, 540, width=5, tags='center')
+canvas.create_line(960, -20 + 540, 960, 20 + 540, width=5, tags='center')
+
+rect = Rectangle(canvas, -100, -50, 100, 0)
 rect.create()
 
 root.mainloop()
