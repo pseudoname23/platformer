@@ -1,14 +1,9 @@
 from tkinter import *
 from tkinter import ttk
 import time
-xV, yV = 0, 0
-x, y = 0, 0
-
-
-def updateP():
-    global x, y, xV, yV
-    x += xV
-    y += yV
+x,y,xV,yV=0,0,0,0
+TPS = 60
+tCount = 0
 
 
 class Player:
@@ -17,6 +12,9 @@ class Player:
 
     def create(self):
         self.parent.create_rectangle(self.x+950, self.y+540, self.x+970, self.y+520, fill=self.color, tags='player')
+        
+    def bind(self, btn, cmd):
+        self.parent.tag_bind(4, btn, cmd)
 
 
 class Rectangle:
@@ -35,19 +33,28 @@ class Canv(Canvas):
         super().__init__(parent, **kwargs)
 
 
-root = Tk()
+root = Tk() 
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-canvas = Canv(root, width=1920, height=1080)
+canvas = Canv(root, width=1920, height=1080) # 0
 canvas.grid(column=0, row=0, sticky=(N, W, E, S))
 
-canvas.create_line(-20 + 960, 540, 20 + 960, 540, width=5, tags='center')
-canvas.create_line(960, -20 + 540, 960, 20 + 540, width=5, tags='center')
+canvas.create_line(-20 + 960, 540, 20 + 960, 540, width=5, tags='center') # 1
+canvas.create_line(960, -20 + 540, 960, 20 + 540, width=5, tags='center') # 2
 
-rect = Rectangle(canvas, -100, -50, 100, 0)
+rect = Rectangle(canvas, -100, -50, 100, 0) # 3
 rect.create()
 
-plr = Player(canvas, 0, 0, '#000000')
+plr = Player(canvas, 0, 0, '#000000') # 4
 plr.create()
 root.mainloop()
+
+#while y >= 0:
+#    y += yV
+#    yV -= 64/TPS
+#    tCount += 1
+#    time.sleep(1/TPS)
+#y = 0
+#yV = 0
+# saving this code for later
