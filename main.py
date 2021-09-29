@@ -45,13 +45,18 @@ def gravitate():
     else:
         yV = 0
 
+touching, xAligned, yAligned = False, False, False
 def detectCollision(bounds, player):
+    global touching, xAligned, yAligned
     coords = canvas.coords(player)
     for v in bounds.values():
-        
-        
-
-
+        if xAligned: continue
+        elif v[0] < coords[0] and v[2] > coords[0]: xAligned = True
+        elif v[0] < coords[2] and v[2] > coords[2]: xAligned = True
+        if yAligned: continue
+        elif v[1] < coords[1] and v[3] > coords[1]: yAligned = True
+        elif v[1] < coords[3] and v[3] > coords[3]: yAligned = True
+        if xAligned and yAligned: touching = True
 
 def jump(n):  # For some reason the code breaks if i don't include an argument
     global yV, y
@@ -66,5 +71,3 @@ def jump(n):  # For some reason the code breaks if i don't include an argument
 
 
 canvas.bind('<ButtonPress-1>', jump)
-print(objBounds)
-print(canvas.coords(4))
