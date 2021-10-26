@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# Gabey Wabey and Ryan Dekasaurus 
+# 2021/10/26
+'''create dumb program that does something about platformer or idk who knows'''
+
+
 from tkinter import *
 from tkinter import ttk
 import time
