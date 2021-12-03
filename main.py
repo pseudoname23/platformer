@@ -14,7 +14,7 @@ tCount = 0
 objBounds = {}
 
 
-class Solid:
+class Solid(object):
     def __init__(self, parent, xPos, yPos, xPos2, yPos2):
         global objBounds
         self.parent,self.xPos,self.yPos,self.xPos2,self.yPos2 = parent,xPos+960,-yPos+540,xPos2+960,-yPos2+540
